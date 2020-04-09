@@ -1,0 +1,28 @@
+﻿@model TenantClientListsModel
+
+@{
+    ViewData["Title"] = "Tenant Clients";
+}
+
+    <div class="text-center">
+        <h1>@ViewData["Title"]</h1>
+        <p><b>Hello @Model.LoggedInUser!</b> Thanks for signing in to XPM with Xero 😊</p>
+        <hr />
+        <div style="text-align: left;">
+            @foreach (var (tenantId, clientList) in Model.TenantClients)
+            {
+                <div>
+                    <h3>Tenant: @tenantId</h3>
+                    <div>
+                        <h5>Clients:</h5>
+                        <ul>
+                            @foreach (var client in clientList.ClientList.Clients)
+                            {
+                                <li>@client.Name</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
